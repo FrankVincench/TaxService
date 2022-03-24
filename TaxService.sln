@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxService.Domain", "TaxSer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxService.Application", "TaxService.DependencyInjection\TaxService.Application.csproj", "{624C8F02-B9A3-4D9A-82C3-F5BC9A50FE9F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxService.API", "TaxService.API\TaxService.API.csproj", "{E752BF9C-8ECE-4D51-8EA0-056F476BAF66}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{624C8F02-B9A3-4D9A-82C3-F5BC9A50FE9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{624C8F02-B9A3-4D9A-82C3-F5BC9A50FE9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{624C8F02-B9A3-4D9A-82C3-F5BC9A50FE9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E752BF9C-8ECE-4D51-8EA0-056F476BAF66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E752BF9C-8ECE-4D51-8EA0-056F476BAF66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E752BF9C-8ECE-4D51-8EA0-056F476BAF66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E752BF9C-8ECE-4D51-8EA0-056F476BAF66}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
