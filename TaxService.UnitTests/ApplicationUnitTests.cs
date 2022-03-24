@@ -2,6 +2,7 @@ using Moq;
 using NUnit.Framework;
 using System;
 using TaxService.Application;
+using TaxService.Application.Behavior;
 using TaxService.Models;
 
 namespace TaxService.UnitTests;
@@ -24,7 +25,8 @@ public class Tests
         //var taxServiceMock = new Mock<ITaxServiceRequest>();
 
         var configuration = new ConfigurationManager();
-        var service = new TaxJarService(configuration);
+        var exception = new ExceptionBehavior();
+        var service = new TaxJarService(configuration, exception);
         var taxCalculator = new TaxJarCalculator(service);
 
 
