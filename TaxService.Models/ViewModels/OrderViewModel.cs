@@ -1,6 +1,6 @@
 ﻿namespace TaxService.Domain.ViewModels;
 
-public record OrderViewModel
+public record OrderViewModel : BaseViewModel
 {
     public string? from_country { get; set; }
     public string? from_zip { get; set; }
@@ -38,4 +38,13 @@ public record OrderViewModel
         public string? sales_tax { get; set; }
     }
 
+    public bool IsValidToCountry()
+    {
+        return base.IsValidCountry(to_country);
+    }
+
+    public bool IsValidToZip()
+    {
+        return base.IsValidZipCode(to_zip);
+    }
 }

@@ -1,6 +1,5 @@
-﻿using System.Text.RegularExpressions;
-using TaxService.Application.Interface;
-using TaxService.Domain;
+﻿using TaxService.Application.Interface;
+using TaxService.Domain.ViewModels;
 
 namespace TaxService.Application.Implementation;
 
@@ -10,17 +9,17 @@ public class AddressViewModelValidator : IRequestValidator<AddressViewModel>
     {
         if (string.IsNullOrEmpty(vm.Zip))
         {
-            throw new InvalidOperationException("ZipCode is a required data");
+            throw new InvalidOperationException("ZipCode a required");
         }
 
-        if (vm.Country.ToUpper() == "US" && !vm.IsValidZipCode())
+        if ("US".Equals(vm.Country?.ToUpper()) && !vm.IsValidZipCode())
         {
-            throw new InvalidOperationException("ZipCode data is not a valid US ZipCode.");
+            throw new InvalidOperationException("ZipCode provided is not a valid US ZipCode.");
         }
 
-        if (!string.IsNullOrEmpty(vm.Country) && !vm.IsValidCountry())
+        if (!string.IsNullOrEmpty(vm?.Country) && !vm.IsValidCountry())
         {
-            throw new InvalidOperationException("Country code is not a valid value.");
+            throw new InvalidOperationException("Country code is not valid.");
         }
     }
 }

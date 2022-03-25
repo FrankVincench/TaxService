@@ -1,8 +1,6 @@
-﻿using System.Text.RegularExpressions;
+﻿namespace TaxService.Domain.ViewModels;
 
-namespace TaxService.Domain;
-
-public record AddressViewModel
+public record AddressViewModel : BaseViewModel
 {
     /// <summary>
     /// Two-letter ISO country code for given location.
@@ -30,16 +28,13 @@ public record AddressViewModel
     /// </summary>
     public string? Street { get; set; }
 
-
     public bool IsValidZipCode()
     {
-        var usZipRegEx = @"^\d{5}(?:[-\s]\d{4})?$";
-        return Regex.Match(Zip, usZipRegEx).Success;
+        return base.IsValidZipCode(Zip);
     }
 
     public bool IsValidCountry()
     {
-        var twoLettersRegex = @"^[A-Z]{2}$";
-        return Regex.Match(Country, twoLettersRegex).Success;
+        return base.IsValidCountry(Country);
     }
 }

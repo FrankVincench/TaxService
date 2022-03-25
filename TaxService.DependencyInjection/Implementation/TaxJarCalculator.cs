@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
 using TaxService.Application.Interface;
 using TaxService.Domain;
+using TaxService.Domain.ViewModels;
 
 namespace TaxService.Application;
 

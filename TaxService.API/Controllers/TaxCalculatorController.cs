@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TaxService.Application;
-using TaxService.Domain;
+using TaxService.Domain.ViewModels;
 
 namespace TaxService.API.Controllers
 {

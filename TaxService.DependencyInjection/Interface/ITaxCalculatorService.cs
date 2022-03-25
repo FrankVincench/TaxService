@@ -1,6 +1,7 @@
 ﻿using TaxService.Domain;
-
 namespace TaxService.Application;
+
+using TaxService.Domain.ViewModels;
 
 public interface ITaxCalculatorService
 {
