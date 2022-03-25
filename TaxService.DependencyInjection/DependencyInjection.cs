@@ -33,10 +33,9 @@ public static class DependencyInjection
 
     public static IServiceCollection AddHttpClient(this IServiceCollection services, IConfiguration configuration)
     {
-        var taxJarConfiguration = configuration.GetSection("Taxjar");
         var client = new HttpClient();
-        client.BaseAddress = new System.Uri(taxJarConfiguration.GetSection("apiurl").Value);
-        client.DefaultRequestHeaders.Add("Authorization", $"Bearer {taxJarConfiguration.GetSection("APIKey").Value}");
+        client.BaseAddress = new System.Uri(configuration["Taxjar:apiurl"]);
+        client.DefaultRequestHeaders.Add("Authorization", $"Bearer {configuration["Taxjar:APIKey"]}");
 
         services.AddSingleton(x => client);
 
