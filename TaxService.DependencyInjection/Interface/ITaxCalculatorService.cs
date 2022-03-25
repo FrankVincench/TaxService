@@ -4,6 +4,6 @@ namespace TaxService.Application;
 
 public interface ITaxCalculatorService
 {
-    Task<Rate> GetTaxRates(AddressViewModel vm);
+    Task<RateResponse.Rate> GetTaxRates(AddressViewModel vm);
     void CalculateTaxForOrder();
 }

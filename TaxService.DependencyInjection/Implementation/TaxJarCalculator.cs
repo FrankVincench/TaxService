@@ -20,7 +20,7 @@ public class TaxJarCalculatorService : ITaxCalculatorService
         throw new NotImplementedException();
     }
 
-    public async Task<Rate> GetTaxRates(AddressViewModel addressvm)
+    public async Task<RateResponse.Rate> GetTaxRates(AddressViewModel addressvm)
     {
         _validator.ValidateModel(addressvm);
 

@@ -7,34 +7,34 @@ public record AddressViewModel
     /// <summary>
     /// Two-letter ISO country code for given location.
     /// </summary>
-    public string Country { get; set; } = "US";
+    public string? Country { get; set; } = "US";
 
     /// <summary>
     /// Postal code for given location (5-Digit ZIP or ZIP+4).
     /// </summary>
-    public string Zip { get; set; }
+    public string? Zip { get; set; }
 
     /// <summary>
     /// Two-letter ISO state code for given location.
     /// </summary>
-    public string State { get; set; }
+    public string? State { get; set; }
 
 
     /// <summary>
     /// 	City for given location.
     /// </summary>
-    public string City { get; set; }
+    public string? City { get; set; }
 
     /// <summary>
     /// 	Street address for given location
     /// </summary>
-    public string Street { get; set; }
+    public string? Street { get; set; }
 
 
     public bool IsValidZipCode()
     {
         var usZipRegEx = @"^\d{5}(?:[-\s]\d{4})?$";
-        return Regex.Match(usZipRegEx, @"^[A-Z]{2}$").Success;
+        return Regex.Match(Zip, usZipRegEx).Success;
     }
 
     public bool IsValidCountry()
