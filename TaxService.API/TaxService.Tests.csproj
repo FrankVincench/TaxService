@@ -16,6 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TaxService.DependencyInjection\TaxService.Application.csproj" />
+    <ProjectReference Include="..\TaxService.Models\TaxService.Domain.csproj" />
     <ProjectReference Include="..\TaxService\TaxService.csproj" />
   </ItemGroup>
 

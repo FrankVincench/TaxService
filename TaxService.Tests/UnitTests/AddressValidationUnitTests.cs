@@ -1,16 +1,12 @@
 ﻿using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaxService.Application.Implementation;
 using TaxService.Application.Interface;
 using TaxService.Domain.ViewModels;
 
 namespace TaxService.UnitTests;
 
-public class ValidationUnitTests
+public class AddressValidationUnitTests
 {
     IRequestValidator<AddressViewModel> _addressValidator;
 
