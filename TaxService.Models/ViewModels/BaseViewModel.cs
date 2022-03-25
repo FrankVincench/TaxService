@@ -1,7 +1,6 @@
-﻿namespace TaxService.Domain.ViewModels;
+﻿using System.Text.RegularExpressions;
 
-using System.Text.RegularExpressions;
-
+namespace TaxService.Domain.ViewModels;
 public record BaseViewModel
 {
     protected bool IsValidZipCode(string zip)

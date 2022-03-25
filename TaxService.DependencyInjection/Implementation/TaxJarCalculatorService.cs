@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Text;
+using System.Text.Json;
 using TaxService.Application.Interface;
 using TaxService.Domain;
 using TaxService.Domain.ViewModels;
@@ -8,22 +9,37 @@ namespace TaxService.Application;
 public class TaxJarCalculatorService : ITaxCalculatorService
 {
     private readonly HttpClient _client;
-    private readonly IRequestValidator<AddressViewModel> _validator;
+    private readonly IRequestValidator<AddressViewModel> _adressValidator;
+    private readonly IRequestValidator<OrderViewModel> _orderValidator;
 
-    public TaxJarCalculatorService(HttpClient client,IRequestValidator<AddressViewModel> validator)
+    public TaxJarCalculatorService(HttpClient client,
+        IRequestValidator<AddressViewModel> adressValidator,
+        IRequestValidator<OrderViewModel> orderValidator)
     {
         _client = client;
-        _validator = validator;
+        _adressValidator = adressValidator;
+        _orderValidator = orderValidator;
     }
 
-    public void CalculateTaxForOrder()
+    public async Task<OrderResponse> CalculateTaxForOrder(OrderViewModel orderVm)
     {
-        throw new NotImplementedException();
+        _orderValidator.ValidateModel(orderVm);
+
+        var content = JsonSerializer.Serialize(orderVm);
+
+        var requestResponse = await _client.PostAsync("taxes",
+            new StringContent(content, Encoding.UTF8, "application/json"));
+
+        var responseValue = requestResponse.Content.ReadAsStringAsync().Result;
+        var result = JsonSerializer.Deserialize<OrderResponse>(responseValue);
+
+        return result;
+
     }
 
     public async Task<RateResponse.Rate> GetTaxRates(AddressViewModel addressvm)
     {
-        _validator.ValidateModel(addressvm);
+        _adressValidator.ValidateModel(addressvm);
 
         var requestMsg = new HttpRequestMessage(HttpMethod.Get, Path.Combine("rates", addressvm.Zip));
 

@@ -1,10 +1,8 @@
-﻿namespace TaxService.Application;
-
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using TaxService.Application.Implementation;
 using TaxService.Application.Interface;
 
+namespace TaxService.Application;
 public static class DependencyInjection
 {
     public static IServiceCollection AddService(this IServiceCollection services)
@@ -20,7 +18,7 @@ public static class DependencyInjection
         client.BaseAddress = new System.Uri(taxJarConfiguration.GetSection("apiurl").Value);
         client.DefaultRequestHeaders.Add("Authorization", $"Bearer {taxJarConfiguration.GetSection("APIKey").Value}");
 
-        services.AddTransient(x => client);
+        services.AddSingleton(x => client);
 
         return services;
     }

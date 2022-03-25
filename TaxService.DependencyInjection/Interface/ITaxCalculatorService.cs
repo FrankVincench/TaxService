@@ -1,10 +1,9 @@
 ﻿using TaxService.Domain;
-namespace TaxService.Application;
-
 using TaxService.Domain.ViewModels;
 
+namespace TaxService.Application;
 public interface ITaxCalculatorService
 {
-    Task<RateResponse.Rate> GetTaxRates(AddressViewModel vm);
-    void CalculateTaxForOrder();
+    Task<RateResponse.Rate> GetTaxRates(AddressViewModel address);
+    Task<OrderResponse> CalculateTaxForOrder(OrderViewModel order);
 }
