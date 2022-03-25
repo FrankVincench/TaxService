@@ -5,9 +5,29 @@ using TaxService.Application.Interface;
 namespace TaxService.Application;
 public static class DependencyInjection
 {
-    public static IServiceCollection AddService(this IServiceCollection services)
+    public delegate ITaxCalculatorService ServiceResolver(string key);
+
+    public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddTransient<ITaxCalculatorService, TaxJarCalculatorService>();
+        services.AddTransient<TaxJarCalculatorService>();
+        services.AddTransient<TaxJarCalculatorService2>();
+
+        services.AddTransient<ServiceResolver>(serviceProvider => key =>
+        {
+            // Get the implementation tied to the key sent on the request
+            var implementationKey = configuration[$"ImplementationKeys:{key}"];
+
+            switch (implementationKey)
+            {
+                case "Implementation1":
+                    return serviceProvider.GetService<TaxJarCalculatorService>();
+                case "Implementation2":
+                    return serviceProvider.GetService<TaxJarCalculatorService2>();
+                default:
+                    throw new KeyNotFoundException();
+            }
+        });
+
         return services;
     }
 

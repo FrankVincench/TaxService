@@ -5,9 +5,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
 
-builder.Services.AddHttpClient(builder.Configuration);
+var configuration = builder.Configuration;
 
-builder.Services.AddService();
+builder.Services.AddHttpClient(configuration);
+builder.Services.AddServices(configuration);
 builder.Services.AddValidation();
 
 builder.Services.AddEndpointsApiExplorer();

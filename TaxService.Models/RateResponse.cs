@@ -4,7 +4,7 @@ public record RateResponse
 {
     public Rate rate { get; set; }
 
-    public record class Rate
+    public record Rate
     {
         public string? city { get; set; }
         public string? city_rate { get; set; }
@@ -19,5 +19,4 @@ public record RateResponse
         public string? state_rate { get; set; }
         public string? zip { get; set; }
     }
-
 }

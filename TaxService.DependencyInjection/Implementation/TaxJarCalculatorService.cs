@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using System.Text.Json;
+using TaxService.Application.Exceptions;
 using TaxService.Application.Interface;
 using TaxService.Domain;
 using TaxService.Domain.ViewModels;
@@ -30,11 +31,14 @@ public class TaxJarCalculatorService : ITaxCalculatorService
         var requestResponse = await _client.PostAsync("taxes",
             new StringContent(content, Encoding.UTF8, "application/json"));
 
-        var responseValue = requestResponse.Content.ReadAsStringAsync().Result;
-        var result = JsonSerializer.Deserialize<OrderResponse>(responseValue);
+        // Let's ensure our request was sucesful.
+        if (requestResponse.IsSuccessStatusCode)
+        {
+            var responseValue = requestResponse.Content.ReadAsStringAsync().Result;
+            return JsonSerializer.Deserialize<OrderResponse>(responseValue);
+        }
 
-        return result;
-
+        throw new TaxJarResponseException();
     }
 
     public async Task<RateResponse.Rate> GetTaxRates(AddressViewModel addressvm)
@@ -54,9 +58,16 @@ public class TaxJarCalculatorService : ITaxCalculatorService
         }
 
         var requestResponse = await _client.SendAsync(requestMsg);
-        var responseValue = requestResponse.Content.ReadAsStringAsync().Result;
-        var result = JsonSerializer.Deserialize<RateResponse>(responseValue);
 
-        return result.rate;
+        // Let's ensure our request was sucesful.
+        if (requestResponse.IsSuccessStatusCode)
+        {
+            var responseValue = requestResponse.Content.ReadAsStringAsync().Result;
+            var result = JsonSerializer.Deserialize<RateResponse>(responseValue);
+            return result.rate;
+        }
+
+
+        throw new TaxJarResponseException();
     }
 }

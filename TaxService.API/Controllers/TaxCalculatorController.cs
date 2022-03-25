@@ -1,16 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TaxService.Application;
 using TaxService.Domain.ViewModels;
+using static TaxService.Application.DependencyInjection;
 
 namespace TaxService.API.Controllers;
 
 [ApiController]
-public class TaxCalculatorController : Controller
+public class TaxCalculatorController : BaseController
 {
-    private readonly ITaxCalculatorService _service;
-    public TaxCalculatorController(ITaxCalculatorService service)
+    private readonly ServiceResolver _serviceResolver;
+    public TaxCalculatorController(ServiceResolver service)
     {
-        _service = service;
+        _serviceResolver = service;
     }
 
     [HttpGet]
@@ -28,7 +29,8 @@ public class TaxCalculatorController : Controller
                 State = state
             };
 
-            var tax = await _service.GetTaxRates(address);
+            var taxCalculatorService = _serviceResolver(GetClientId(Request));
+            var tax = await taxCalculatorService.GetTaxRates(address);
 
             return Ok(tax);
         }
@@ -48,7 +50,8 @@ public class TaxCalculatorController : Controller
     {
         try
         {
-            var result = await _service.CalculateTaxForOrder(order);
+            var taxCalculatorService = _serviceResolver(GetClientId(Request));
+            var result = await taxCalculatorService.CalculateTaxForOrder(order);
 
             return Ok(result);
         }
