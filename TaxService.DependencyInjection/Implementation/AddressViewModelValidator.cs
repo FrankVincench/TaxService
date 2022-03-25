@@ -1,0 +1,26 @@
+﻿using System.Text.RegularExpressions;
+using TaxService.Application.Interface;
+using TaxService.Domain;
+
+namespace TaxService.Application.Implementation;
+
+public class AddressViewModelValidator : IRequestValidator<AddressViewModel>
+{
+    public void ValidateModel(AddressViewModel vm)
+    {
+        if (string.IsNullOrEmpty(vm.Zip))
+        {
+            throw new InvalidOperationException("ZipCode is a required data");
+        }
+
+        if (vm.Country.ToUpper() == "US" && !vm.IsValidZipCode())
+        {
+            throw new InvalidOperationException("ZipCode data is not a valid US ZipCode.");
+        }
+
+        if (!string.IsNullOrEmpty(vm.Country) && !vm.IsValidCountry())
+        {
+            throw new InvalidOperationException("Country code is not a valid value.");
+        }
+    }
+}

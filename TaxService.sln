@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxService", "TaxService\TaxService.csproj", "{C32A422A-CD2B-4538-8C77-B29F9C75307E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxService.UnitTests", "TaxService.UnitTests\TaxService.UnitTests.csproj", "{D64AF2CC-F01A-4BC3-8FAD-27ACFFDA5690}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxService.UnitTests", "TaxService.UnitTests\TaxService.UnitTests.csproj", "{D64AF2CC-F01A-4BC3-8FAD-27ACFFDA5690}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxService.Domain", "TaxService.Models\TaxService.Domain.csproj", "{3DAF8B54-570D-4402-8658-2FD3BA0BCBAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxService.Domain", "TaxService.Models\TaxService.Domain.csproj", "{3DAF8B54-570D-4402-8658-2FD3BA0BCBAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxService.Application", "TaxService.DependencyInjection\TaxService.Application.csproj", "{624C8F02-B9A3-4D9A-82C3-F5BC9A50FE9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxService.Application", "TaxService.DependencyInjection\TaxService.Application.csproj", "{624C8F02-B9A3-4D9A-82C3-F5BC9A50FE9F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxService.API", "TaxService.API\TaxService.API.csproj", "{E752BF9C-8ECE-4D51-8EA0-056F476BAF66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxService.API", "TaxService.API\TaxService.API.csproj", "{E752BF9C-8ECE-4D51-8EA0-056F476BAF66}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C32A422A-CD2B-4538-8C77-B29F9C75307E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C32A422A-CD2B-4538-8C77-B29F9C75307E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C32A422A-CD2B-4538-8C77-B29F9C75307E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C32A422A-CD2B-4538-8C77-B29F9C75307E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D64AF2CC-F01A-4BC3-8FAD-27ACFFDA5690}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D64AF2CC-F01A-4BC3-8FAD-27ACFFDA5690}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D64AF2CC-F01A-4BC3-8FAD-27ACFFDA5690}.Release|Any CPU.ActiveCfg = Release|Any CPU
