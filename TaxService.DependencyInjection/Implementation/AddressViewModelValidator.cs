@@ -9,7 +9,7 @@ public class AddressViewModelValidator : IRequestValidator<AddressViewModel>
     {
         if (string.IsNullOrEmpty(vm.Zip))
         {
-            throw new InvalidOperationException("ZipCode a required");
+            throw new InvalidOperationException("ZipCode is required");
         }
 
         if ("US".Equals(vm.Country?.ToUpper()) && !vm.IsValidZipCode())

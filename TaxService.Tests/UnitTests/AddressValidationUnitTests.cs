@@ -16,8 +16,6 @@ public class AddressValidationUnitTests
         _addressValidator = new AddressViewModelValidator();
     }
 
-    //[UnitOfWork_StateUnderTest_ExpectedBehavior]
-
     [Test]
     public void AddressViewModel_IsZipMissing_ThrowZipValidationException()
     {
@@ -34,7 +32,7 @@ public class AddressValidationUnitTests
         var ex = Assert.Throws<InvalidOperationException>(() => _addressValidator.ValidateModel(vm));
 
         //Assert
-        Assert.AreEqual(ex.Message, "ZipCode a required");
+        Assert.AreEqual(ex.Message, "ZipCode is required");
     }
 
     [Test]

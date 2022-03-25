@@ -66,8 +66,6 @@ public class TaxJarCalculatorService : ITaxCalculatorService
             var result = JsonSerializer.Deserialize<RateResponse>(responseValue);
             return result.rate;
         }
-
-
         throw new TaxJarResponseException();
     }
 }
