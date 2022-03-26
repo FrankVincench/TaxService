@@ -7,9 +7,14 @@ public class OrderViewModelValidation : IRequestValidator<OrderViewModel>
 {
     public void ValidateModel(OrderViewModel order)
     {
-        if (string.IsNullOrEmpty(order.to_country) || order.shipping < 0)
+        if (string.IsNullOrEmpty(order.to_country) )
         {
-            throw new InvalidOperationException("ZipCode is a required data");
+            throw new InvalidOperationException("Country field is required");
+        }
+
+        if (order.shipping < 0)
+        {
+            throw new InvalidOperationException("Shipping cannot be less than zero");
         }
 
         if (!string.IsNullOrEmpty(order.to_country) && !order.IsValidToCountry())
